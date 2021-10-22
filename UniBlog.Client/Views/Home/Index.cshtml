@@ -5,30 +5,27 @@
 
 <div class="text-center">
 
-    @foreach (var article in Model)
-    {
-        <p>@article.Username</p>
-        <p>@article.Title</p>
-        <p>@article.Description</p>
-    }
-
-    <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Index">
-        <table>
+    <table class="table table-dark">
+        <thead>
             <tr>
-                <td>Article Title : </td>
-                <td><input type="text" id="Article" name="Title" /></td>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
             </tr>
+        </thead>
+        <tbody>
+            @foreach(var article in Model)
+            {
             <tr>
-                <td>Description </td>
-                <td><input type="text" id="txtLastName" name="Description" /></td>
+                <th scope="row">1</th>
+                <td>@article.Username</td>
+                <td>@article.Title</td>
+                <td>@article.Description</td>
             </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Submit" /></td>
-            </tr>
-        </table>
-        <hr />
-    </form>
-
-
+            }
+            
+        </tbody>
+    </table>
+   
 </div>

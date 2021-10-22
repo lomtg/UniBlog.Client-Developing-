@@ -33,19 +33,25 @@ namespace UniBlog.Client.Controllers
             return View(await _context.GetArticles());
         }
      
+        [HttpGet]
+        public IActionResult AddArticle()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public async Task<IActionResult> Index([FromForm] ArticleInputModel article)
+        public async Task<IActionResult> AddArticle([FromForm] ArticleInputModel article)
         {
             if (!ModelState.IsValid)
             {
-                return View(await _context.GetArticles());
+                return View();
             }
 
             var mappedArticle = _mapper.Map<Article>(article);
             mappedArticle.AuthorId = await _authorsContext.GetAuthorsId("lomtg");
 
             await _context.AddArticle(mappedArticle);
-            return View(await _context.GetArticles());
+            return View("Index",await _context.GetArticles());
         }
     }
 }

@@ -23,15 +23,15 @@ namespace UniBlog.Data.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Guid> GetAuthorsId(string Username)
+        /*public async Task<Guid> GetAuthorsId(string Username)
         {
             var author = await _context.Authors.FirstOrDefaultAsync(x => x.UserName == Username);
             return author.Id;
-        }
-        public async Task<String> GetAuthorsUsername(Guid Id)
+        }*/
+        /*public async Task<String> GetAuthorsUsername(Guid Id)
         {
             var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == Id);
             return author.UserName;
-        }
+        }*/
     }
 }

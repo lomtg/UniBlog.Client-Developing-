@@ -10,7 +10,7 @@ namespace UniBlog.Data.Models
         [Key]
         public Guid Id { get; set; }
         [Required]
-        public Guid AuthorId { get; set; }
+        public String AuthorUsername { get; set; }
         [Required]
         [MaxLength(50)]
         public String Title { get; set; }

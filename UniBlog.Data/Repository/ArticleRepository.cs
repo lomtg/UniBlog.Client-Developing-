@@ -37,7 +37,7 @@ namespace UniBlog.Data.Repository
             {
                 articlesDto.Add(new ArticleViewModel()
                 {
-                    Username = await GetAuthorsUsername(article.AuthorId),
+                    Username = article.AuthorUsername,
                     Title = article.Title,
                     Description = article.Description
                 });
@@ -45,11 +45,11 @@ namespace UniBlog.Data.Repository
             return articlesDto;
         }
 
-        public async Task<String> GetAuthorsUsername(Guid Id)
+        /*public async Task<String> GetAuthorsUsername(Guid Id)
         {
             var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == Id);
             return author.UserName;
-        }
+        } */
 
         public async Task<IEnumerable<Article>> GetArticlesByAuthor(Guid id)
         {

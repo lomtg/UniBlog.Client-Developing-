@@ -8,16 +8,14 @@ namespace UniBlog.Data.Models
     public class Author
     {
         [Key]
-        public Guid Id { get; set; }
+        [MaxLength(30)]
+        public String UserName { get; set; }
         [Required]
         [MaxLength(50)]
         public String FirstName { get; set; }
         [Required]
         [MaxLength(50)]
         public String LastName { get; set; }
-        [Required]
-        [MaxLength(30)]
-        public String UserName { get; set; }
         [Required]
         [MaxLength(50)]
         public String Password { get; set; }

@@ -48,7 +48,8 @@ namespace UniBlog.Client.Controllers
             }
 
             var mappedArticle = _mapper.Map<Article>(article);
-            mappedArticle.AuthorId = await _authorsContext.GetAuthorsId("lomtg");
+            mappedArticle.AuthorUsername = "lomtg";
+            
 
             await _context.AddArticle(mappedArticle);
             return View("Index",await _context.GetArticles());

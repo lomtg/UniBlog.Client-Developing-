@@ -1,21 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Add Article";
 }
-<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="AddArticle">
-    <table>
-        <tr>
-            <td>Article Title : </td>
-            <td><input type="text" id="Article" name="Title" /></td>
-        </tr>
-        <tr>
-            <td>Description </td>
-            <td><input type="text" id="txtLastName" name="Description" /></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Submit" /></td>
-        </tr>
-    </table>
-    <hr />
-</form>
 
+
+<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="AddArticle">
+    <div class="form-group">
+        <label for="Title">Title</label>
+        <input type="text" class="form-control" id="Title" placeholder="Title" name="Title">
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea class="form-control" id="Description" rows="3" name="Description"></textarea>
+    </div>
+    <input type="submit" value="Submit" />
+</form>

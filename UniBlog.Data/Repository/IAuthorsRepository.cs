@@ -9,6 +9,7 @@ namespace UniBlog.Data.Repository
     public interface IAuthorsRepository 
     {
         public Task RegisterAuthor(Author author);
+        public Task<Author> GetAuthorByUsername(string username, string password);
 
     }
 }

@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,13 +27,18 @@ namespace UniBlog.Client
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddDbContext<ArticlesDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("ArticlesDb")));
+            services.AddControllersWithViews(o => o.Filters.Add(new AuthorizeFilter()));
 
             services.AddScoped<IArticleRepository, ArticleRepository>();
             services.AddScoped<IAuthorsRepository, AuthorsRepository>();
+
+            services.AddDbContext<ArticlesDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("ArticlesDb")));
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
 
         }
 
@@ -46,6 +53,8 @@ namespace UniBlog.Client
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

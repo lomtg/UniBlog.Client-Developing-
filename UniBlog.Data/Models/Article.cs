@@ -14,6 +14,7 @@ namespace UniBlog.Data.Models
         [Required]
         [MaxLength(50)]
         public String Title { get; set; }
+
         [Required]
         [MaxLength(500)]
         public String Description { get; set; }

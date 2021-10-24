@@ -10,6 +10,7 @@ using UniBlog.Data.Repository;
 using UniBlog.Data.InputModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace UniBlog.Client.Controllers
 {
@@ -47,10 +48,12 @@ namespace UniBlog.Client.Controllers
             {
                 return View();
             }
-            
+
             var mappedArticle = _mapper.Map<Article>(article);
-            mappedArticle.AuthorUsername = "lomtg";
-            
+            //mappedArticle.AuthorUsername = "lomtg";
+            var x = User.Claims.ToList().First().Value;
+
+            mappedArticle.AuthorUsername = x;
             await _context.AddArticle(mappedArticle);
             return View("Index",await _context.GetArticles());
         }

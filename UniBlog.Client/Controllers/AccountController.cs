@@ -52,7 +52,7 @@ namespace UniBlog.Client.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UserName.ToString()),
                 new Claim(ClaimTypes.Name, user.FirstName),
-                //new Claim("Username",user.UserName)
+                new Claim("Username",user.UserName)
                 //new Claim(ClaimTypes.Role, user.Role),
         };
                 var identity = new ClaimsIdentity(claims,
